@@ -7,7 +7,7 @@ class Entry < ActiveRecord::Base
 
   has_and_belongs_to_many :budgets
 
-  def initialize(data)
+  def initialize(data = {})
     super(data)
     self.entry_type = "expense"
   end
