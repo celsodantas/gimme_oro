@@ -1,0 +1,47 @@
+<%= form_for(@entry) do |f| %>
+  <% if @entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+
+      <ul>
+      <% @entry.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <label>Select budget</label>
+    <% Budget.all.each do |budget| %>
+      <%= check_box_tag "entry[budget_ids][]", budget.id, @entry.budgets.include?(budget) %>
+      <%= budget.description %> <br />
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :date %><br>
+    <%= f.text_field :date, value: @entry.date.try(:strftime, "%d/%m/%Y") %>
+  </div>
+  <div class="field">
+    <%= f.label :entry_type %><br>
+    <%= f.radio_button :entry_type, "expense" %> Expense &nbsp;
+    <%= f.radio_button :entry_type, "income" %> Income
+  </div>
+  <div class="field">
+    <%= f.label :amount %><br>
+    <%= f.text_field :amount %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $(function() {
+    $("#entry_date").datepicker({todayBtn: true, autoclose: true, format: "dd/mm/yyyy"})
+  })
+</script>

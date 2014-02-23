@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Moneysave</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="masthead">
+      <h3 class="muted">Gimme Oro</h3>
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="container">
+            <ul class="nav">
+              <li class="<%= request.path == entries_path ? 'active' : '' %>"><%= link_to "Entries", entries_path %></li>
+              <li class="<%= request.path == budgets_path ? 'active' : '' %>"><%= link_to "Budgets", budgets_path %></li>
+            </ul>
+          </div>
+        </div>
+      </div><!-- /.navbar -->
+    </div>
+
+    <%= yield %>
+
+    <hr>
+
+    <div class="footer">
+      <p>© Bla bla bla 2014</p>
+    </div>
+
+  </div> <!-- /container -->
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+ <div>
+    <h3><small><%= link_to "<<", entries_path(date: @date - 1.month) %></small>
+        <span><%= @date.strftime "%B" %></span>
+        <small><%= link_to ">>", entries_path(date: @date + 1.month) %></small></h3>
+  </div>
+
+  <div>
+    <h3>Budgets Summary</h3>
+    <table class="table table-condensed table-hover">
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Total</td>
+          <td>Free</td>
+          <td>Budget</td>
+          <td>%</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% Budget.all.each do |budget| %>
+        <tr>
+          <td><%= budget.description %></td>
+          <% if budget.sum_for_month(@date).zero? %>
+            <td> <%= number_to_currency budget.sum_for_month(@date) %> </td>
+          <% else %>
+            <td> <strong><%= number_to_currency budget.sum_for_month(@date) %></strong> </td>
+          <% end -%>
+          <% if budget.excedded_for_month(@date) %>
+            <td class="danger">
+              <strong><%= number_to_currency(budget.amount - budget.sum_for_month(@date)) %></strong>
+            </td>
+          <% else %>
+            <td><%= number_to_currency(budget.amount - budget.sum_for_month(@date)) %></td>
+          <% end -%>
+          <td><%= number_to_currency budget.amount %></td>
+          <td>%<%= budget.amount > 0 ? budget.sum_for_month(@date) / budget.amount : 0.0 %></td>
+        </tr>
+        <% end -%>
+      </tbody>
+      <tfoot>
+        <td>Total</td>
+        <td><%= number_to_currency Entry.for_month(@date).map(&:amount).reduce(0, :+) %></td>
+        <td>Free</td>
+        <td><%= number_to_currency Budget.all.map(&:amount).reduce(0, :+) %></td>
+        <td>%0.0</td>
+      </tfoot>
+    </table>
+  </div>
+
+  <hr>  
