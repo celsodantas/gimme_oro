@@ -5,7 +5,6 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
   def index
-    
     @entries = Entry.for_month(@date)
   end
 

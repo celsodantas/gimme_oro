@@ -1,4 +1,6 @@
 class Entry < ActiveRecord::Base
+  default_scope order('entries.date ASC')
+
   TYPES = %w{income expense}
 
   validates :amount, presence: true
