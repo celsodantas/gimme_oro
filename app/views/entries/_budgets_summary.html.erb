@@ -23,7 +23,7 @@
           <% if budget.sum_for_month(@date).zero? %>
             <td> <%= number_to_currency budget.sum_for_month(@date) %> </td>
           <% else %>
-            <td> <strong><%= number_to_currency budget.sum_for_month(@date) %></strong> </td>
+            <td class="<%= budget.excedded_for_month(@date) ? "danger" : "" %>"> <strong><%= number_to_currency budget.sum_for_month(@date) %></strong> </td>
           <% end -%>
           <% if budget.excedded_for_month(@date) %>
             <td class="danger">
@@ -33,7 +33,7 @@
             <td><%= number_to_currency(budget.amount - budget.sum_for_month(@date)) %></td>
           <% end -%>
           <td><%= number_to_currency budget.amount %></td>
-          <td>%<%= budget.amount > 0 ? budget.sum_for_month(@date) / budget.amount : 0.0 %></td>
+          <td>%<%= "%.2f" % (budget.amount > 0 ?  budget.sum_for_month(@date) / budget.amount : 0.0) %></td>
         </tr>
         <% end -%>
       </tbody>
@@ -42,7 +42,7 @@
         <td><%= number_to_currency Entry.for_month(@date).map(&:amount).reduce(0, :+) %></td>
         <td>Free</td>
         <td><%= number_to_currency Budget.all.map(&:amount).reduce(0, :+) %></td>
-        <td>%0.0</td>
+        <td>%0.00</td>
       </tfoot>
     </table>
   </div>
