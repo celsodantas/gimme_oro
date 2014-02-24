@@ -33,7 +33,9 @@
             <td><%= number_to_currency(budget.amount - budget.sum_for_month(@date)) %></td>
           <% end -%>
           <td><%= number_to_currency budget.amount %></td>
-          <td>%<%= "%.2f" % (budget.amount > 0 ?  budget.sum_for_month(@date) / budget.amount : 0.0) %></td>
+          <td class="<%= budget.excedded_for_month(@date) ? "danger" : "" %>">
+            %<%= "%.2f" % budget.month_percentage(@date) %>
+          </td>
         </tr>
         <% end -%>
       </tbody>

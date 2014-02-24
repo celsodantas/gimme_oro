@@ -16,4 +16,8 @@ class Budget < ActiveRecord::Base
   def excedded_for_month(date)
     sum_for_month(date) > amount
   end
+
+  def month_percentage(date)
+    amount > 0 ? (sum_for_month(date) / amount) * 100 : 0.0
+  end
 end
