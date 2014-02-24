@@ -26,6 +26,14 @@
       </div><!-- /.navbar -->
     </div>
 
+    <% if @date %>
+    <div>
+      <h3><small><%= link_to "<<", entries_path(date: @date - 1.month) %></small>
+          <span><%= @date.strftime "%B" %></span>
+          <small><%= link_to ">>", entries_path(date: @date + 1.month) %></small></h3>
+    </div>
+    <% end -%>
+
     <%= yield %>
 
     <hr>

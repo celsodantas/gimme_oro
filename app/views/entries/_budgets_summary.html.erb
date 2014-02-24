@@ -1,8 +1,4 @@
- <div>
-    <h3><small><%= link_to "<<", entries_path(date: @date - 1.month) %></small>
-        <span><%= @date.strftime "%B" %></span>
-        <small><%= link_to ">>", entries_path(date: @date + 1.month) %></small></h3>
-  </div>
+
 
   <div>
     <h3>Budgets Summary</h3>
@@ -20,7 +16,7 @@
         <% Budget.all.each do |budget| %>
         <tr>
           <!-- NAME -->
-          <td><%= budget.description %></td>
+          <td><%= link_to budget.description, budget_path(budget, date: @date) %></td>
           <!-- Total -->
           <% if budget.sum_for_month(@date).zero? %>
             <td> <%= number_to_currency budget.sum_for_month(@date) %> </td>
