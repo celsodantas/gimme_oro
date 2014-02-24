@@ -19,11 +19,20 @@
             <ul class="nav">
               <li class="<%= request.path == entries_path ? 'active' : '' %>"><%= link_to "Entries", entries_path %></li>
               <li class="<%= request.path == budgets_path ? 'active' : '' %>"><%= link_to "Budgets", budgets_path %></li>
+              <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
             </ul>
           </div>
         </div>
       </div><!-- /.navbar -->
     </div>
+
+    <% if @date %>
+    <div>
+      <h3><small><%= link_to "<<", entries_path(date: @date - 1.month) %></small>
+          <span><%= @date.strftime "%B" %></span>
+          <small><%= link_to ">>", entries_path(date: @date + 1.month) %></small></h3>
+    </div>
+    <% end -%>
 
     <%= yield %>
 

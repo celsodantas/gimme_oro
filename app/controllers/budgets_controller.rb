@@ -10,6 +10,8 @@ class BudgetsController < ApplicationController
   # GET /budgets/1
   # GET /budgets/1.json
   def show
+    @date = Date.parse(params[:date])
+    @entries = @budget.entries.for_month(@date)
   end
 
   # GET /budgets/new

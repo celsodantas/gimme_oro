@@ -1,14 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Descript:</strong>
-  <%= @budget.description %>
-</p>
+<h3>Budget: <%= @budget.description %> <small>Amount: <%= number_to_currency @budget.amount %> - Total: <%= number_to_currency @entries.sum("entries.amount") %></small></h3>
 
-<p>
-  <strong>Amout:</strong>
-  <%= @budget.amount %>
-</p>
-
-<%= link_to 'Edit', edit_budget_path(@budget) %> |
-<%= link_to 'Back', budgets_path %>
+<%= render "entries/table" %>

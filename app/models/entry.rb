@@ -21,4 +21,8 @@ class Entry < ActiveRecord::Base
   def self.for_budget(budget)
     joins(:budgets).where("budgets_entries.budget_id = #{budget.id}")
   end
+
+  def self.total_for_month(date)
+    for_month(date).map(&:amount).reduce(0, :+)
+  end
 end
