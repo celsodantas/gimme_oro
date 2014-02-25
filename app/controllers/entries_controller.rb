@@ -5,7 +5,8 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
   def index
-    @entries = Entry.for_month(@date)
+    @entries = current_user.entries.for_month(@date)
+    @budgets = current_user.budgets
   end
 
   # GET /entries/1
@@ -15,17 +16,19 @@ class EntriesController < ApplicationController
 
   # GET /entries/new
   def new
-    @entry = Entry.new
+    @entry = current_user.entries.build
+    @budgets = current_user.budgets
   end
 
   # GET /entries/1/edit
   def edit
+    @budgets = current_user.budgets
   end
 
   # POST /entries
   # POST /entries.json
   def create
-    @entry = Entry.new(entry_params)
+    @entry = current_user.entries.build(entry_params)
 
     respond_to do |format|
       if @entry.save
@@ -66,7 +69,7 @@ class EntriesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_entry
-    @entry = Entry.find(params[:id])
+    @entry = current_user.entries.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

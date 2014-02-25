@@ -7,6 +7,7 @@ class Entry < ActiveRecord::Base
   validates :date, presence: true
   validates :entry_type, inclusion: { in: TYPES }
 
+  belongs_to :user
   has_and_belongs_to_many :budgets
 
   def initialize(data = {})

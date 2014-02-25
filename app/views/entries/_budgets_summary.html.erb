@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <% Budget.all.each do |budget| %>
+        <% @budgets.all.each do |budget| %>
         <tr>
           <!-- NAME -->
           <td><%= link_to budget.description, budget_path(budget, date: @date) %></td>

@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <label>Select budget</label>
-    <% Budget.all.each do |budget| %>
+    <% @budgets.all.each do |budget| %>
       <%= check_box_tag "entry[budget_ids][]", budget.id, @entry.budgets.include?(budget) %>
       <%= budget.description %> <br />
     <% end %>
