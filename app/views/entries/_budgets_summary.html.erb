@@ -42,9 +42,9 @@
       </tbody>
       <tfoot class="secondary-text">
         <td>Total</td>
-        <td><%= number_to_currency Entry.total_for_month(@date) %></td>
-        <td><%= number_to_currency(Budget.sum(:amount) - Entry.total_for_month(@date)) %></td>
-        <td><%= number_to_currency Budget.sum(:amount) %></td>
+        <td><%= number_to_currency current_user.entries.total_for_month(@date) %></td>
+        <td><%= number_to_currency(@budgets.sum(:amount) - current_user.entries.total_for_month(@date)) %></td>
+        <td><%= number_to_currency @budgets.sum(:amount) %></td>
         <td>%0.00</td>
       </tfoot>
     </table>
