@@ -1,10 +1,13 @@
 class Entry < ActiveRecord::Base
+  default_scope order('entries.date ASC')
+
   TYPES = %w{income expense}
 
   validates :amount, presence: true
   validates :date, presence: true
   validates :entry_type, inclusion: { in: TYPES }
 
+  belongs_to :user
   has_and_belongs_to_many :budgets
 
   def initialize(data = {})

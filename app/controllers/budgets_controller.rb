@@ -4,7 +4,7 @@ class BudgetsController < ApplicationController
   # GET /budgets
   # GET /budgets.json
   def index
-    @budgets = Budget.all
+    @budgets = current_user.budgets
   end
 
   # GET /budgets/1
@@ -16,7 +16,7 @@ class BudgetsController < ApplicationController
 
   # GET /budgets/new
   def new
-    @budget = Budget.new
+    @budget = current_user.budgets.build
   end
 
   # GET /budgets/1/edit
@@ -26,7 +26,7 @@ class BudgetsController < ApplicationController
   # POST /budgets
   # POST /budgets.json
   def create
-    @budget = Budget.new(budget_params)
+    @budget = current_user.budgets.build(budget_params)
 
     respond_to do |format|
       if @budget.save
@@ -66,7 +66,7 @@ class BudgetsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_budget
-      @budget = Budget.find(params[:id])
+      @budget =  current_user.budgets.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
