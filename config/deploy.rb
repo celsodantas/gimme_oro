@@ -19,9 +19,9 @@ role :web, server_ip                          # Your HTTP server, Apache/etc
 role :app, server_ip                          # This may be the same as your `Web` server
 role :db,  server_ip, :primary => true # This is where Rails migrations will run
 
-after 'deploy:update_code', 'deploy:symlink_db'
-
 default_run_options[:pty] = true
+
+after 'deploy:finalize_update', 'deploy:symlink_db'
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
