@@ -1,4 +1,7 @@
 Moneysave::Application.routes.draw do
+  get "csv_import/index", as: :csv_import
+  get "csv_import/upload", as: :csv_import_upload
+
   devise_for :users
   root 'entries#index'
 
@@ -46,7 +49,7 @@ Moneysave::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

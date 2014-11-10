@@ -2,12 +2,12 @@
 
 one:
   description: MyString
-  date: 2013-11-23 18:12:39
+  date: 2013-11-23
   entry_type: MyString
-  amount: 
+  amount: 11.50
 
 two:
   description: MyString
-  date: 2013-11-23 18:12:39
+  date: 2013-11-23
   entry_type: MyString
-  amount: 
+  amount: -15.11

@@ -19,6 +19,7 @@
             <ul class="nav">
               <li class="<%= request.path == entries_path ? 'active' : '' %>"><%= link_to "Entries", entries_path %></li>
               <li class="<%= request.path == budgets_path ? 'active' : '' %>"><%= link_to "Budgets", budgets_path %></li>
+              <li class="<%= request.path == csv_import_path ? 'active' : '' %>"><%= link_to "CSV Import", csv_import_path %></li>
               <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
             </ul>
           </div>

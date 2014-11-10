@@ -1,5 +1,5 @@
 class Entry < ActiveRecord::Base
-  default_scope order('entries.date ASC')
+  default_scope { order('entries.date ASC') }
 
   TYPES = %w{income expense}
 
@@ -25,5 +25,9 @@ class Entry < ActiveRecord::Base
 
   def self.total_for_month(date)
     for_month(date).map(&:amount).reduce(0, :+)
+  end
+
+  def unique?
+    Entry.where(amount: amount, date: date, user: user).count == 0
   end
 end
