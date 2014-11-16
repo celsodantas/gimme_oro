@@ -29,14 +29,16 @@ default_run_options[:pty] = true
 
 # If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
-  task :start do ; end
-  task :stop do ; end
-
-  %w[start stop restart].each do |command|
+  %w[start stop].each do |command|
     desc "#{command} unicorn server"
     task command, roles: :app, except: {no_release: true} do
       run "/etc/init.d/unicorn_#{application} #{command}"
     end
+  end
+
+  task :restart, roles: :app, except: {no_release: true} do
+    stop
+    start
   end
 
   desc "Symlinks the database.yml"
