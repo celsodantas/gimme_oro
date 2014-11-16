@@ -65,7 +65,7 @@ class BudgetsController < ApplicationController
 
   def autocomplete
     term = params[:term]
-    list = Budget.all.map {|b| b.description }.select{|e| e.include? term}
+    list = Budget.all.map {|b| b.description }.select{|e| e.downcase.include? term.downcase}
 
     respond_to do |format|
       format.json { render json: list }
