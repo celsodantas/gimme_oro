@@ -15,9 +15,9 @@
     <tbody>
       <% @entries.each do |entry| %>
         <tr>
-          <td><%= entry.description.html_safe %></td>
+          <td><%= best_in_place entry, :description, type: :input %></td>
           <td><%= entry.date.strftime("%d/%b/%y") %></td>
-          <td><%= entry.budgets.map {|b| b.description}.join(", ") %></td>
+          <td><input value="<%= entry.budgets.map {|b| b.description}.join(", ") %>" class="budget-tags" data-remote="entries/<%= entry.id %>.json"></td>
           <td><%= entry.entry_type %></td>
           <td> <strong><%= number_to_currency entry.amount %></strong> </td>
           <td><%= link_to 'Show', entry %></td>

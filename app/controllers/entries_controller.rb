@@ -74,6 +74,14 @@ class EntriesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def entry_params
+    if params[:entry][:budgets_list]
+      budgets_list = params[:entry][:budgets_list].split(",")
+      budgets = Budget.where(description: budgets_list)
+      params[:entry][:budget_ids] = budgets.map(&:id)
+
+      params[:entry].delete(:budgets_list)
+    end
+
     params.require(:entry).permit!
   end
 

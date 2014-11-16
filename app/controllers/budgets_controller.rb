@@ -63,6 +63,12 @@ class BudgetsController < ApplicationController
     end
   end
 
+  def autocomplete
+    respond_to do |format|
+      format.json { render json: Budget.all.map {|b| b.description } }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_budget

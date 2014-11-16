@@ -5,7 +5,11 @@ Moneysave::Application.routes.draw do
   devise_for :users
   root 'entries#index'
 
-  resources :budgets
+  resources :budgets do
+    collection do
+      get :autocomplete
+    end
+  end
 
   resources :entries
 
