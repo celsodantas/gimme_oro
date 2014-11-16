@@ -17,6 +17,16 @@ class CSVImporterRBCTest < ActiveSupport::TestCase
     end
   end
 
+  test "should import positive values" do
+    file_string = read_file("regular_rbc_csv.csv")
+
+    assert CSVImporterRBC.new.import(@user, file_string)
+
+    Entry.all.each do |entry|
+      assert entry.amount > 0, "Entry #{entry.description} has a negative value: #{entry.amount}"
+    end
+  end
+
   test "should not import the same entry twice" do
     csv_string = <<-CSV
 "Account Type","Account Number","Transaction Date","Cheque Number","Description 1","Description 2","CAD$","USD$"

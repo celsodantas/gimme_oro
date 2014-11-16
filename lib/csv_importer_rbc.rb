@@ -10,7 +10,7 @@ class CSVImporterRBC
         entry = Entry.new(user: user)
         entry.description = row[4]
         entry.entry_type = row[6].to_f > 0 ? "income" : "expense"
-        entry.amount = row[6].to_f
+        entry.amount = row[6].to_f.abs
         entry.date = Date.strptime(row[2], "%m/%d/%Y")
 
         if entry.unique?
