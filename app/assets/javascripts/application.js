@@ -19,7 +19,7 @@
 //= require jquery-ui
 //= require_tree .
 
-$(document).ready(function() {
+function ready () {
   /* Activating Best In Place */
   $(".best_in_place").best_in_place();
 
@@ -54,6 +54,8 @@ $(document).ready(function() {
         context: this
     }).done(flashRow)
   }
-});
+};
 
+$(document).ready(ready)
+$(document).on('page:load', ready)
 
