@@ -15,8 +15,5 @@
 /log/*.log
 /tmp
 
-# database
-config/database.yml
-
 # OS specific
 .DS_Store
