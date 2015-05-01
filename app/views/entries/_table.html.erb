@@ -13,16 +13,16 @@
     </thead>
 
     <tbody>
-      <% @entries.each do |entry| %>
-        <tr>
-          <td><%= best_in_place entry, :description, type: :input, :display_with => lambda { |v| v.html_safe } %></td>
+      <% @entries.preload(:budgets).each do |entry| %>
+        <tr id="entry-<%= entry.id %>">
+          <td><%= best_in_place entry, :description, as: :input, :display_with => lambda { |v| v.html_safe } %></td>
           <td><%= entry.date.strftime("%d/%b/%y") %></td>
           <td><input value="<%= entry.budgets.map {|b| b.description}.join(", ") %>" class="budget-tags" data-remote="entries/<%= entry.id %>.json"></td>
           <td><%= entry.entry_type %></td>
           <td> <strong><%= number_to_currency entry.amount %></strong> </td>
           <td><%= link_to 'Show', entry %></td>
           <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
-          <td><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
         </tr>
       <% end %>
     </tbody>

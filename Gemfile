@@ -13,6 +13,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem "less-rails"
 gem "twitter-bootstrap-rails"
+gem 'quiet_assets', group: :development
 
 gem 'devise'
 gem "best_in_place"

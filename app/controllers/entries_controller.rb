@@ -62,6 +62,7 @@ class EntriesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to entries_url }
       format.json { head :no_content }
+      format.js
     end
   end
 
