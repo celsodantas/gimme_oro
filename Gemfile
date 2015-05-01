@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
-ruby "1.9.3"
+ruby "2.1.2"
 
-gem 'rails', '~>4.0.0'
+gem 'rails', '~>4.1.0'
 
 gem 'mysql2'
 
@@ -32,7 +32,7 @@ gem 'thin', group: [:development]
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
-gem 'debugger', group: [:development, :test]
+gem 'byebug', group: [:development, :test]
 
 gem 'capistrano'
 gem 'rvm-capistrano'

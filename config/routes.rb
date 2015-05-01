@@ -1,6 +1,6 @@
 Moneysave::Application.routes.draw do
   get "csv_import/index", as: :csv_import
-  get "csv_import/upload", as: :csv_import_upload
+  post "csv_import/upload", as: :csv_import_upload
 
   devise_for :users
   root 'entries#index'
