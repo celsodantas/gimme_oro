@@ -36,5 +36,5 @@ gem 'thin', group: [:development]
 gem 'byebug', group: [:development, :test]
 
 gem 'capistrano'
-gem 'rvm-capistrano'
+gem 'rvm-capistrano',  require: false
 gem 'net-ssh'
