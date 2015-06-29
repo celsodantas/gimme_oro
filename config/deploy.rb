@@ -5,6 +5,7 @@ load 'deploy/assets'
 
 #set :rvm_ruby_string, '1.9.3'
 #set :rvm_type, :user  # Don't use system-wide RVM
+set :rvm_type, :system
 
 set :application, "gimme_oro"
 set :repository,  "https://github.com/celsodantas/gimme_oro.git"
