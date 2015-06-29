@@ -8,9 +8,9 @@ load 'deploy/assets'
 
 set :application, "gimme_oro"
 set :repository,  "https://github.com/celsodantas/gimme_oro.git"
-set :user, "deployer"
+set :user, "rails"
 set :server_ip, "server.celsodantas.com"
-set :deploy_to, "/home/#{user}/rails_apps/#{application}"
+set :deploy_to, "/home/#{user}/apps/#{application}"
 
 # set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
