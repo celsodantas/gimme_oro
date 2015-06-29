@@ -10,6 +10,7 @@ set :rvm_type, :system
 set :application, "gimme_oro"
 set :repository,  "https://github.com/celsodantas/gimme_oro.git"
 set :user, "rails"
+set :use_sudo, false
 set :server_ip, "server.celsodantas.com"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 
