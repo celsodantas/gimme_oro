@@ -7,7 +7,7 @@ worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
 timeout 15
 preload_app true
 
-root = "/home/deployer/rails_apps/gimme_oro/current"
+root = "/home/rails/apps/gimme_oro/current"
 working_directory root
 pid "#{root}/tmp/pids/unicorn.pid"
 stderr_path "#{root}/log/unicorn.log"
