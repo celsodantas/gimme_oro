@@ -27,7 +27,11 @@ gem 'jbuilder', '~> 1.2'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
-gem 'unicorn', group: [:production]
+group :production do
+  gem 'unicorn'
+  gem 'newrelic_rpm'
+end
+
 gem 'thin', group: [:development]
 
 # Use Capistrano for deployment
